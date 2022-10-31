@@ -5,23 +5,26 @@ const UserController = require("./user.controller");
 const { User } = require("../../models");
 const UserService = require("./user.service");
 const userService = new UserService(User);
+const userController = new UserController(userService);
 
 module.exports = (app) => {
   const router = express.Router();
-  const userController = new UserController(userService);
   router.post(
     "/",
     validator(createUserSchema),
-    userController.createUserController
+    userController.createUserController.bind(userController)
   );
   router.put(
     "/:id",
     validator(updateUserSchema),
-    userController.updateUserController
+    userController.updateUserController.bind(userController)
   );
-  router.get("/", userController.findUsersController);
-  router.get("/:id", userController.findUserController);
-  router.delete("/:id", userController.destroyUserController);
+  router.get("/", userController.findUsersController.bind(userController));
+  router.get("/:id", userController.findUserController.bind(userController));
+  router.delete(
+    "/:id",
+    userController.destroyUserController.bind(userController)
+  );
 
   app.use("/api/users", router);
 };

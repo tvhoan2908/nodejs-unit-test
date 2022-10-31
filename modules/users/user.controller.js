@@ -5,6 +5,7 @@ class UserController {
 
   async createUserController(request, response) {
     try {
+      console.log("createUserController: ", this);
       const data = await this.userService.createUser(request.body);
       response.json({ success: true, data });
     } catch (err) {

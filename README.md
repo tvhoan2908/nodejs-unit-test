@@ -15,3 +15,16 @@
 $ npm install
 $ npm test
 ```
+
+- Test e2e:
+
+```bash
+$ npm run test:e2e
+```
+
+- Test specific file:
+
+```bash
+$ npx jest file path
+$ eg: npx jest tests/users/user.service.spec.js
+```
