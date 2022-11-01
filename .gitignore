@@ -19,7 +19,6 @@ yarn-error.log*
 *.sln
 /config/local.json
 
-.vscode/
 .env
 coverage/
 test-report.html

@@ -17,12 +17,14 @@
   "author": "",
   "license": "ISC",
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "*.js": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/node": "^7.20.0",
     "@babel/preset-env": "^7.19.4",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@types/jest": "^29.2.0",
     "@types/sequelize": "^4.28.14",
     "babel-jest": "^29.2.2",

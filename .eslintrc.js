@@ -11,6 +11,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
+  ignorePatterns: [".eslintrc.js", "commitlint.config.js"],
   rules: {
     "no-var": "error",
     semi: "error",
