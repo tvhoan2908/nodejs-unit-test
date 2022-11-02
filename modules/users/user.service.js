@@ -1,31 +1,33 @@
-class UserService {
-  constructor(userModel) {
-    this.userModel = userModel;
-  }
+const { User } = require("../../models");
 
-  async createUser(request) {
-    return this.userModel.create(request);
-  }
-
-  async updateUser(request, id) {
-    return this.userModel.update(request, {
-      where: { id },
-    });
-  }
-
-  async findAll() {
-    return this.userModel.findAll();
-  }
-
-  async findOne(id) {
-    return this.userModel.findByPk(id);
-  }
-
-  async destroy(id) {
-    return this.userModel.destroy({
-      where: { id },
-    });
-  }
+async function createUser(request) {
+  return User.create(request);
 }
 
-module.exports = UserService;
+async function updateUser(request, id) {
+  return User.update(request, {
+    where: { id },
+  });
+}
+
+async function findAllUser() {
+  return User.findAll();
+}
+
+async function findOneUser(id) {
+  return User.findByPk(id);
+}
+
+async function destroyUser(id) {
+  return User.destroy({
+    where: { id },
+  });
+}
+
+module.exports = {
+  createUser,
+  updateUser,
+  findAllUser,
+  findOneUser,
+  destroyUser,
+};

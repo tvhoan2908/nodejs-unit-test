@@ -1,61 +1,59 @@
-class UserController {
-  constructor(userService) {
-    this.userService = userService;
-  }
+const UserService = require("./user.service");
 
-  async createUserController(request, response) {
-    try {
-      console.log("createUserController: ", this);
-      const data = await this.userService.createUser(request.body);
-      response.json({ success: true, data });
-    } catch (err) {
-      console.log(err);
-      response.status(500).json({ message: err.message });
-    }
-  }
-
-  async updateUserController(request, response) {
-    try {
-      const data = await this.userService.updateUser(
-        request.body,
-        request.params.id
-      );
-      response.json({ success: true, data });
-    } catch (err) {
-      console.log(err);
-      response.status(500).json({ message: err.message });
-    }
-  }
-
-  async findUsersController(request, response) {
-    try {
-      const data = await this.userService.findAll();
-      response.json({ success: true, data });
-    } catch (err) {
-      console.log(err);
-      response.status(500).json({ message: err.message });
-    }
-  }
-
-  async findUserController(request, response) {
-    try {
-      const data = await this.userService.findOne(request.params.id);
-      response.json({ success: true, data });
-    } catch (err) {
-      console.log(err);
-      response.status(500).json({ message: err.message });
-    }
-  }
-
-  async destroyUserController(request, response) {
-    try {
-      const data = await this.userService.destroy(request.params.id);
-      response.json({ success: true, data });
-    } catch (err) {
-      console.log(err);
-      response.status(500).json({ message: err.message });
-    }
+async function createUserController(request, response) {
+  try {
+    const data = await UserService.createUser(request.body);
+    response.json({ success: true, data });
+  } catch (err) {
+    console.log(err);
+    response.status(500).json({ message: err.message });
   }
 }
 
-module.exports = UserController;
+async function updateUserController(request, response) {
+  try {
+    const data = await UserService.updateUser(request.body, request.params.id);
+    response.json({ success: true, data });
+  } catch (err) {
+    console.log(err);
+    response.status(500).json({ message: err.message });
+  }
+}
+
+async function findUsersController(request, response) {
+  try {
+    const data = await UserService.findAllUser();
+    response.json({ success: true, data });
+  } catch (err) {
+    console.log(err);
+    response.status(500).json({ message: err.message });
+  }
+}
+
+async function findUserController(request, response) {
+  try {
+    const data = await UserService.findOneUser(request.params.id);
+    response.json({ success: true, data });
+  } catch (err) {
+    console.log(err);
+    response.status(500).json({ message: err.message });
+  }
+}
+
+async function destroyUserController(request, response) {
+  try {
+    const data = await UserService.destroyUser(request.params.id);
+    response.json({ success: true, data });
+  } catch (err) {
+    console.log(err);
+    response.status(500).json({ message: err.message });
+  }
+}
+
+module.exports = {
+  createUserController,
+  updateUserController,
+  findUsersController,
+  findUserController,
+  destroyUserController,
+};
