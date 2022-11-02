@@ -23,9 +23,10 @@ jest.mock("../../models", () => {
 describe("UserService", () => {
   describe("CREATE", () => {
     it("should return create user", async () => {
+      const createSpy = jest.spyOn(User, "create");
       await UserService.createUser(createUserDto);
-      expect(User.create).toBeCalledTimes(1);
-      expect(User.create).toBeCalledWith(createUserDto);
+      expect(createSpy).toBeCalledTimes(1);
+      expect(createSpy).toHaveBeenCalledWith(createUserDto);
     });
   });
 
